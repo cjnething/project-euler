@@ -1,4 +1,5 @@
 //PROJECT EULER: PROBLEM 19 COUNTING SUNDAYS
+//COMPLETED 5/18/15 WITH DAVID ERNST
 
 // You are given the following information, but you may prefer to do some research for yourself.
 
