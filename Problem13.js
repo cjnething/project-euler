@@ -107,6 +107,7 @@ var num =
 ];
 
 
+
 var parseIntFunc = function(t) {
     return parseInt(t);
 }
@@ -116,22 +117,27 @@ var findSum = function() {
   var sumArr = [];
   var sumDigits = [0,0,0,0,0,0,0,0,0,0,0,0];
   
+  //split the array of strings into an array of arrays with [i][j] being each value
   for (var i = 0; i<num.length; i++) {
       var temp = num[i].split("").map(parseIntFunc);
       num[i] = temp;
   }
   
+  //create an array of the value at each tens placement in the final sum
   for(var j = 0; j<50; j++) {
      sumArr.push(0);
   }
   
+  //starting with the ones value in each column, iterate over all the rows and add the values at all the rows in that column
   for (var col = num[0].length-1; col>=0; col--) {
       for (var row=0; row<num.length; row++) {
           sumArr[col] += num[row][col];
       }
+     // console.log('col', col, 'sumArr', sumArr[col]);
   }
   
-  for (var k = 0; k<12; k++) {
+  for (var k = num[0].length-1; k>=0; k--) {
+      //console.log('k', k, 'sumArr[col]', sumArr[k]);
       for (var m = 0; m<3; m++) {
           var digit = sumArr[k].toString()[m];
           digit = parseInt(digit);
@@ -149,12 +155,14 @@ var findSum = function() {
 }
 
 
+findSum();
 
-findSum()
 
+//total returns 5537376230...
 
-//My answer: 5537376221
-//Real ans:  5537376230
+// Congratulations, the answer you gave to problem 13 is correct.
+
+// You are the 128703rd person to have solved this problem.
 
 
 
