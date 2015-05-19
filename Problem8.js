@@ -16,7 +16,7 @@ var currProduct = 1;
 
 for (var i = 0; i<arrayDigits.length; i++) {
   for (var j = i; j<i+13; j++) {
-     currProduct *= Number(arrayDigits[j]);
+     currProduct *= arrayDigits[j];
   }
   if(currProduct > product) {
     product = currProduct;
