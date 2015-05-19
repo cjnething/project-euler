@@ -1,4 +1,5 @@
 //PROJECT EULER: PROBLEM 13 LARGE SUM
+//COMPLETED 5/19/15
 
 //Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 
