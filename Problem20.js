@@ -1,5 +1,5 @@
 //PROJECT EULER: PROBLEM 20 FACTORIAL DIGIT SUM
-
+//NOT COMPLETED
 
 // n! means n × (n − 1) × ... × 3 × 2 × 1
 
