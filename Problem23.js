@@ -62,7 +62,6 @@ var notSum = function() {
         while (j < i && !isSum) {
             if (isAbundant(target - abundant[j])) {
                 isSum = true;
-                console.log('target', target, 'first', abundant[j], 'second', target-abundant[j]);
             } else {
                 j++;
             }
