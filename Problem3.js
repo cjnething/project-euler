@@ -31,8 +31,8 @@ var primeFactor = false;
 var i = 2;
 
 while(!primeFactor) {
-    if (target%i === 0 && isPrime(i)) {
-       if (target%(target/i) === 0 && isPrime(target/i)) {
+    if (target%i === 0) {
+       if (isPrime(target/i)) {
            primeFactor = target/i;
            return primeFactor;
        } else {
