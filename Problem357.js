@@ -1,4 +1,5 @@
 //PROJECT EULER: PROBLEM 357 PRIME GENERATING INTEGERS
+//NOT COMPLETED
 
 // Consider the divisors of 30: 1,2,3,5,6,10,15,30.
 // It can be seen that for every divisor d of 30, d+30/d is prime.
