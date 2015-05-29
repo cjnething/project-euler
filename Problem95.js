@@ -35,44 +35,49 @@ var findDivisors = function(n) {
 
 
 var findChain = function() {
-    var noCheck = {};
-    var smallest;
-    var length = 0;
-    var currLength = 0;
-    var currChain = {};
-    var longChain = {};
-    var begin = 0;
-    
-    var chain = function(n) {
-        if (currChain[n]) {
-            return;
-        } 
-        noCheck[n] = true;
-        currChain[n] = true;
-        currLength++;
-        chain(findDivisors(n));
-    }
-    
-    for (var i = 1; i<100; i++) {
-        if (!noCheck[i]) {
-        noCheck[i] = true;
-        chain(i);
-        console.log('i', i, 'chain', currChain);
-        for (var key in currChain) {
-            if (currLength > length) {
-                length = currLength;
-                longChain = currChain;
-                begin = i;
-                if (key < smallest || typeof smallest === "undefined") {
-                    smallest = key;
-                }
-            }
-        }
-        currLength = 0;
-        currChain = {};
-        }
-    }
-    
-    console.log('LONG CHAIN', longChain, 'BEGIN', begin);
-    return smallest;
+   var longestStart;
+   var longestLength = 0;
+   var currLength = 0;
+   var noCheck = {};
+   var start;
+   var currVal;
+   
+   
+   //check findDivisors(i)
+   //if that does not equal 1, then keep going along the chain
+   //keep adding to the currlength
+   //if new finDivisors = i, then that is a chain
+   //check if currlength > longestlength
+   //add all these numbers to noCheck
+   //hold i in the longestStart value
+   
+   
+   for (var i = 2; i<500; i++) {
+       if (!noCheck[i]) {
+       start = i;
+       currVal = findDivisors(i);
+       noCheck[i] = true;
+       noCheck[currVal] = true;
+       if (currVal !== start) {
+           currLength++;
+       }
+       
+       while (findDivisors(currVal) !== start && findDivisors(currVal) !== 1 && findDivisors(currVal) !== currVal) {
+           currVal = findDivisors(currVal);
+           currLength++;
+           noCheck[currVal] = true;
+       }
+       if (findDivisors(currVal) === start) {
+           console.log('currvalFIRST', currVal, 'length', currLength);
+        if (currLength > longestLength) {
+           console.log('currVal', currVal, 'currLength', currLength);
+           longestLength = currLength;
+           longestStart = start;
+       }
+       }
+      
+   }
+   currLength = 0;
+   }
+   return longestStart;
 }
