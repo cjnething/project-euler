@@ -33,7 +33,6 @@ var findDivisors = function(n) {
     return total;
 }
 
-
 var findChain = function() {
    var longestStart;
    var longestLength = 0;
@@ -52,7 +51,8 @@ var findChain = function() {
    //hold i in the longestStart value
    
    
-   for (var i = 2; i<500; i++) {
+   for (var i = 2; i<5000; i++) {
+       console.log('i', i);
        if (!noCheck[i]) {
        start = i;
        currVal = findDivisors(i);
@@ -62,7 +62,7 @@ var findChain = function() {
            currLength++;
        }
        
-       while (findDivisors(currVal) !== start && findDivisors(currVal) !== 1 && findDivisors(currVal) !== currVal) {
+       while (findDivisors(currVal) !== start && findDivisors(currVal) !== 1 && findDivisors(currVal) !== currVal && currLength < 20) {
            currVal = findDivisors(currVal);
            currLength++;
            noCheck[currVal] = true;
