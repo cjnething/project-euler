@@ -14,6 +14,17 @@
 
 // Find the smallest member of the longest amicable chain with no element exceeding one million.
 
+var getDivisors = function(num) {
+    var divisors = {};
+    
+    for(var i = 1; i<=num; i++) {
+        divisors[i] = findDivisors(i);
+    }
+
+   return divisors;
+}
+
+
 var findDivisors = function(n) {
     var divisors = {};
     var total = 0;
@@ -34,7 +45,9 @@ var findDivisors = function(n) {
     return total;
 }
 
-var findChain = function() {
+var findChain = function(limit) {
+   var divisors = getDivisors(limit);
+    
    var noCheck = {};
    var chainStarts = {};
    var longestStart;
@@ -55,27 +68,27 @@ var findChain = function() {
    //hold i in the longestStart value
    
    
-   for (var i = 2; i<1000000; i++) {
+   for (var i = 2; i<limit; i++) {
        if (!noCheck[i]) {
        start = i;
        currVal = i;
        currChain[i] = true;
        while (
-        findDivisors(currVal) !== start && 
-        findDivisors(currVal) !== 1 && 
-        findDivisors(currVal) !== currVal && 
+        divisors[currVal] !== start && 
+        divisors[currVal] !== 1 && 
+        divisors[currVal] !== currVal && 
         currLength < 30 && 
-        !currChain[findDivisors(currVal)] && 
-        findDivisors(currVal) < 1000000 &&
-        !chainStarts[findDivisors(currVal)]) {
-           currVal = findDivisors(currVal);
+        !currChain[divisors[currVal]] && 
+        divisors[currVal] < limit &&
+        !chainStarts[divisors[currVal]]) {
+           currVal = divisors[currVal];
            currLength++;
            currChain[currVal] = true;
        }
-       if (currChain[findDivisors(currVal)]) {
-           currChain[findDivisors(currVal)] = 2;
+       if (currChain[divisors[currVal]]) {
+           currChain[divisors[currVal]] = 2;
        }
-       if (findDivisors(currVal) === start) {
+       if (divisors[currVal] === start) {
         if (currLength > longestLength) {
            console.log('currStart', start, 'length', currLength);
            longestLength = currLength;
@@ -97,7 +110,6 @@ var findChain = function() {
    }
    return longestStart;
 }
-
 
 
 // Congratulations, the answer you gave to problem 95 is correct.
