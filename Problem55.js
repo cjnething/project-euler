@@ -1,4 +1,6 @@
 //PROJECT EULER: PROBLEM 55 LYCHREL NUMBERS
+//COMPLETED 5/30/15
+//ANSWER: 249
 
 
 // If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
@@ -27,7 +29,6 @@ var backwards = function(num) {
    return Number(backwards);
 }
 
-
 var isPalindrome = function(num) {
     if (num === backwards(num)) {
         return true;
@@ -36,7 +37,31 @@ var isPalindrome = function(num) {
     }
 }
 
-
 var reverseAndAdd = function(num) {
     return num + backwards(num);
 }
+
+var findLychrels = function(limit) {
+    var count = 0;
+    var curr;
+    var currIterations = 0;
+    for (var i = 1; i<=limit; i++) {
+        curr = i;
+        while (!isPalindrome(reverseAndAdd(curr)) && currIterations < 50) {
+            curr = reverseAndAdd(curr);
+            currIterations++;
+        }
+        if (!isPalindrome(reverseAndAdd(curr))) {
+            count++;
+        } 
+       currIterations = 0;
+    }
+    return count;
+}
+
+
+// Congratulations, the answer you gave to problem 55 is correct.
+
+// You are the 32681st person to have solved this problem.
+
+
