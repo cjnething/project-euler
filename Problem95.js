@@ -1,5 +1,5 @@
 //PROJECT EULER: PROBLEM 95 AMICABLE CHAINS
-//COMPLETED 5/29/15, BUT ALGORITHM TAKES MORE THAN ONE MINUTE
+//COMPLETED 5/29/15
 //ANSWER: 14316
 
 // The proper divisors of a number are all the divisors excluding the number itself. For example, the proper divisors of 28 are 1, 2, 4, 7, and 14. As the sum of these divisors is equal to 28, we call it a perfect number.
