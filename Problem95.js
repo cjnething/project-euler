@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 95 AMICABLE CHAINS
-//DID NOT COMPLETE
+//COMPLETED 5/29/15, BUT ALGORITHM TAKES MORE THAN ONE MINUTE
+//ANSWER: 14316
 
 // The proper divisors of a number are all the divisors excluding the number itself. For example, the proper divisors of 28 are 1, 2, 4, 7, and 14. As the sum of these divisors is equal to 28, we call it a perfect number.
 
@@ -34,10 +35,13 @@ var findDivisors = function(n) {
 }
 
 var findChain = function() {
+   var noCheck = {};
+   var chainStarts = {};
    var longestStart;
    var longestLength = 0;
+   
+   var currChain = {};
    var currLength = 0;
-   var noCheck = {};
    var start;
    var currVal;
    
@@ -51,33 +55,54 @@ var findChain = function() {
    //hold i in the longestStart value
    
    
-   for (var i = 2; i<5000; i++) {
-       console.log('i', i);
+   for (var i = 2; i<1000000; i++) {
        if (!noCheck[i]) {
        start = i;
-       currVal = findDivisors(i);
-       noCheck[i] = true;
-       noCheck[currVal] = true;
-       if (currVal !== start) {
-           currLength++;
-       }
-       
-       while (findDivisors(currVal) !== start && findDivisors(currVal) !== 1 && findDivisors(currVal) !== currVal && currLength < 20) {
+       currVal = i;
+       currChain[i] = true;
+       while (
+        findDivisors(currVal) !== start && 
+        findDivisors(currVal) !== 1 && 
+        findDivisors(currVal) !== currVal && 
+        currLength < 30 && 
+        !currChain[findDivisors(currVal)] && 
+        findDivisors(currVal) < 1000000 &&
+        !chainStarts[findDivisors(currVal)]) {
            currVal = findDivisors(currVal);
            currLength++;
-           noCheck[currVal] = true;
+           currChain[currVal] = true;
+       }
+       if (currChain[findDivisors(currVal)]) {
+           currChain[findDivisors(currVal)] = 2;
        }
        if (findDivisors(currVal) === start) {
-           console.log('currvalFIRST', currVal, 'length', currLength);
         if (currLength > longestLength) {
-           console.log('currVal', currVal, 'currLength', currLength);
+           console.log('currStart', start, 'length', currLength);
            longestLength = currLength;
            longestStart = start;
        }
        }
+       for (var key in currChain) {
+           if (currChain[key] !== 2) {
+               noCheck[key] = true;
+           } else {
+               chainStarts[key] = true;
+               console.log('chainStarts', key, 'start', start);
+           }
+       }
       
    }
    currLength = 0;
+   currChain = {};
    }
    return longestStart;
 }
+
+
+
+// Congratulations, the answer you gave to problem 95 is correct.
+
+// You are the 8254th person to have solved this problem.
+
+
+
