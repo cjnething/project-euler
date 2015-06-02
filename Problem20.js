@@ -12,7 +12,7 @@
 var factorialSum = function() {
   var addedSum = 0;
   var factorial = 1;
-  for (var i = 1; i<=21; i++) {
+  for (var i = 1; i<=100; i++) {
     factorial *= i;
     if (factorial % 10 === 0) {
       console.log('factorial', factorial, 'i', i);
@@ -36,3 +36,6 @@ var factorialSum = function() {
   
   
 }
+
+factorialSum();
+
