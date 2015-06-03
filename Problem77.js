@@ -1,4 +1,5 @@
 //PROJECT EULER: PROBLEM 77 PRIME SUMMATIONS
+//NOT COMPLETED
 
 
 // It is possible to write ten as the sum of primes in exactly five different ways:
@@ -10,7 +11,6 @@
 // 2 + 2 + 2 + 2 + 2
 
 // What is the first value which can be written as the sum of primes in over five thousand different ways?
-
 
 var isPrime = function(n) {
     var prime = true;
@@ -27,26 +27,50 @@ var isPrime = function(n) {
 }
 
 var findPrimes = function(limit) {
-    var primes  = {};
+    var primes  = [];
     for (var i = 2; i<limit; i++) {
         if (isPrime(i)) {
-            primes[i] = true;
+            primes.push(i);
         }
     }
     return primes;
 }
 
 
-var sumPrimes = function() {
+
+var findSums = function() {
     var mostWays = 0;
+    var mostWaysInt = 0;
     var currWays = 0;
-    var currVal = 2;
-    var primes = findPrimes(1000);
+    var currTotal = 0;
+    var primes = findPrimes(10);
+    var j = 1;
+    console.log(primes);
     
-    while (mostWays < 10) {
-        
-        currVal++;
+    var recurse = function(num, currTotal, start) {
+    for (var i = start; i>=0; i--) {
+        currTotal += primes[i];
+        if (currTotal === num) {
+            currWays++;
+            currTotal = currTotal - primes[i];
+        } else if (currTotal < num) {
+            recurse(currTotal, i); 
+            currTotal -= primes[i];
+        } else {
+            currTotal -= primes[i];
+        }
+    }
+    return currWays;
     }
     
-    
+    while (mostWays < 5000) {
+      var total = recurse(j, 0, primes.length-1);
+      if (total > mostWays) {
+          mostWays = total;
+          mostWaysInt = j;
+      }
+      j+=5000;
+    }
+    console.log('mostWaysInt', mostWaysInt, 'mostWays', mostWays);
+    return mostWaysInt;
 }
