@@ -39,5 +39,44 @@ var factorialDigitSums = function(num) {
 }
 
 var chains = function() {
+    var factorials = {};
+    var currChain = {};
+    var chainStarters = {};
+    var curr;
+    var length = 0;
+    var hasRepeated = false;
+    var numChains = 0;
     
+    for (var i = 3; i<4; i++) {
+        curr = i;
+        length++;
+        currChain[curr] = true;
+        if (!chainStarters[curr]) {
+        while (!hasRepeated) {
+            if (factorials[curr]) {
+                curr = factorials[curr];
+            } 
+            if (!factorials[curr]) {
+              var temp = factorialDigitSums(curr);
+              factorials[curr] = temp;
+              curr = temp;
+            }
+            if (currChain[curr]) {
+                hasRepeated = true;
+                chainStarters[curr] = true;
+            }
+            length++;
+            currChain[curr] = true;
+        }
+        
+        if (length === 60) {
+            numChains++;
+        }
+        }
+        console.log('currChain', currChain, 'i', i);
+        currChain = {};
+        length = 0;
+        hasRepeated = false;
+    }
+    return numChains;
 }
