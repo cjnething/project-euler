@@ -1,4 +1,4 @@
-//PROJECT EULER PROBLEM 11
+//PROJECT EULER PROBLEM 11 LARGEST PRODUCT IN A GRID
 //COMPLETED 5/18/15
 
 //In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
