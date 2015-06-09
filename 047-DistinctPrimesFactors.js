@@ -1,5 +1,6 @@
 //PROJECT EULER : PROBLEM 47 DISTINCT PRIMES FACTORS
 //COMPLETED 5/18/15
+//ANSWER: 134043
 
 
 // The first two consecutive numbers to have two distinct prime factors are:

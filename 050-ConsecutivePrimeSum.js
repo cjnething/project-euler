@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 50 CONSECUTIVE PRIME SUM
 //COMPLETED 5/18/15
+//ANSWER: 997651
 
 // The prime 41, can be written as the sum of six consecutive primes:
 

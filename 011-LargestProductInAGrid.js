@@ -1,5 +1,6 @@
 //PROJECT EULER PROBLEM 11 LARGEST PRODUCT IN A GRID
 //COMPLETED 5/18/15
+//ANSWER: 70600674
 
 //In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 //The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
