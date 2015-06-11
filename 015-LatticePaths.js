@@ -39,8 +39,3 @@ var findPaths = function(n) {
    recurse(0,0);
   return routes;
 }
-   
-   recurse(0,0)
-  
-  return routes;
-}
