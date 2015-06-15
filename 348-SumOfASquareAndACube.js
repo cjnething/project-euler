@@ -66,7 +66,7 @@ var findSquareCubes = function(limit) {
   return fourSquareCubes;
 }
 
-console.log(findSquareCubes(3500))
+console.log(findSquareCubes(5000))
 
 
 
