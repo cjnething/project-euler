@@ -66,7 +66,7 @@ var findSquareCubePower = function(limit) {
 
 //console.log(Math.pow(4, 2) + Math.pow(4, 3) + Math.pow(4, 4));
 
-console.log(findSquareCubePower(4000));
+console.log(findSquareCubePower(5000));
 
 
 
