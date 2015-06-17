@@ -11,11 +11,12 @@
 var reverse = function(num) {
   var str = num.toString();
   var newStr = "";
+  var results = [];
 
   for (var i = str.length-1; i>=0; i--) {
     newStr = newStr.concat(str[i]);
   }
-
+  
   return Number(newStr);
 }
 
@@ -24,22 +25,28 @@ var reverse = function(num) {
 var reversibleNumbers = function(limit) {
   var reversed, sum, digits, iStr, reversedStr;
   var reversible = {};
+  var notReversible = {};
   var count = 0;
   var oddDigits = {1: true, 3: true, 5: true, 7: true, 9: true};
   var isOdd = true;
 
   for (var i = 1; i<limit; i++) {
-    if (!reversible[i]) {
+    if (i % 10 === 0) {
+      notReversible[i] = true;
+    }
+    if (!reversible[i] && !notReversible[i]) {
       reversed = reverse(i);
+      if (!reversible[reversed] && !notReversible[reversed]) {
       iStr = i.toString();
       reversedStr = reversed.toString();
-      if (reversedStr.charAt(reversedStr.length-1) !== "0" && iStr.charAt(iStr.length-1) !== "0") {
       sum = reversed + i;
       digits =  sum.toString().split("");
 
       for (var j = 0; j<digits.length; j++) {
         if (!oddDigits[digits[j]]) {
           isOdd = false;
+          notReversible[i] = sum;
+          notReversible[reversed] = sum;
           break;
         }
       }
@@ -47,15 +54,15 @@ var reversibleNumbers = function(limit) {
         count+=2;
         reversible[i] = sum;
         reversible[reversed] = sum;
-      }
+      } 
 
       isOdd = true;
       }
-
       }
+
   }
   
-  //console.log(reversible)
+  //console.log(reversible);
   return count;
 }
 
