@@ -12,7 +12,6 @@
 
 var findPaths = function(n) {
   var alreadyFound = [];
-  var routes = 0;
 
   for (var i = 0; i<=n; i++) {
     alreadyFound.push([]);
@@ -26,11 +25,9 @@ var findPaths = function(n) {
   var recurse = function(row, col) {
     if (row === 0 || col === 0) {
       alreadyFound[row][col] = 1;
-      routes++;
       return alreadyFound[row][col];
     }
     else if (alreadyFound[row][col]) {
-      routes += alreadyFound[row][col]
       return alreadyFound[row][col];
     }
     else {
@@ -38,9 +35,10 @@ var findPaths = function(n) {
       return alreadyFound[row][col];
     }
   }
-
+  
   return recurse(n, n);
 }
+
 
 console.log(findPaths(20))
 
