@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 187 SEMIPRIMES
-//NOT COMPLETED
+//COMPLETED 6/18/15
+//ANSWER: 17427258
 
 
 // A composite is a number containing at least two prime factors. For example, 15 = 3 × 5; 9 = 3 × 3; 12 = 2 × 2 × 3.
@@ -34,29 +35,28 @@ var findPrimes = function(limit) {
 var findComposites = function(limit) {
   var count = 0;
   var primes = findPrimes(limit);
-  var composites = {};
-  var mult = {};
-  var j;
+  var mult, j;
   var i = 0;
 
-  // for (var i = 0; i<primes.length; i++) {
   while(primes[i] <= Math.sqrt(limit)) {
     j = i;
     mult = primes[i] * primes[j];
     while (mult < limit) {
-
-      if (!composites[mult]) {
-        composites[mult] = true;
-        count++;
-      }
+      count++;
       j++;
       mult = primes[i] * primes[j];
     }
     i++;
   }
-  //console.log(primes);
-  //console.log(composites);
   return count;
 }
 
-console.log(findComposites(10000000));
+console.log(findComposites(100000000));
+
+
+
+// Congratulations, the answer you gave to problem 187 is correct.
+
+// You are the 7219th person to have solved this problem.
+
+
