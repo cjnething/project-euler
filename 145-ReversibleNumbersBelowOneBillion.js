@@ -67,5 +67,5 @@ var reversibleNumbers = function(limit) {
 }
 
 
-console.log(reversibleNumbers(1000));
+console.log(reversibleNumbers(100000000));
 
