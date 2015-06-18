@@ -14,7 +14,7 @@ var findDiscs = function(start) {
   var blue, red, fractionFirst, fractionSecond;
 
   while(!found) {
-    for (blue = Math.floor(total/2); blue<total; blue++) {
+    for (blue = Math.floor(total * 2/3); blue<Math.ceil(total * 3 / 4); blue++) {
       red = total-blue;
       console.log('blue', blue, 'red', red, 'total', total);
       fractionFirst = blue/total;
@@ -29,4 +29,16 @@ var findDiscs = function(start) {
   }
 }
 
-findDiscs(200)
+console.log(findDiscs(10000));
+
+// var simple = function(target) {
+//   for (var i = 1; i<target; i++) {
+//     var probability = (i/target) * (i-1)/(target-1)
+//     console.log('blue', i, 'red', target-i, 'prob', probability)
+//   }
+
+//   console.log('2/3', target * 2 / 3);
+//   console.log('3/4', target * 3 / 4);
+// }
+
+// console.log(simple(21));

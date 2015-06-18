@@ -26,11 +26,11 @@ var isPrime = function(n) {
 
 var findTarget = function(tar) {
 
-var target = tar;
-var primeFactor = false;
-var i = 2;
+  var target = tar;
+  var primeFactor = false;
+  var i = 2;
 
-while(!primeFactor) {
+  while(!primeFactor) {
     if (target%i === 0) {
        if (isPrime(target/i)) {
            primeFactor = target/i;
@@ -41,5 +41,10 @@ while(!primeFactor) {
     } else {
          i++;
     }
+  }
 }
-}
+
+
+console.log(findTarget(600851475143))
+
+
