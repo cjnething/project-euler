@@ -15,8 +15,7 @@ var fib = function(num) {
         return num;
     } else {
         return fib(num-1) + fib(num-2);
-    }
-    
+    }   
 }
 
 
@@ -35,3 +34,7 @@ var fibSum = function(limit) {
     
     return sum;
 }
+
+
+
+console.log(fibSum(4000000));
