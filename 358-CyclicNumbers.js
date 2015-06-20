@@ -36,3 +36,41 @@ Pseudocode:
 2.) Iterate through every possible number starting with "00000000137" and ending in "56789" and check if it is cyclical
 3.) Return the cyclical number
 */
+
+
+function isCyclical(num) {
+  var str = num.toString();
+  var length = str.length;
+  var possibilities = {};
+  var currStr, currPartialStr, currEndStr, mult;
+
+  possibilities[str] = true;
+  
+  for (var i = 1; i<=length; i++) {
+    currPartialStr = str.substring(0, i);
+    currEndStr = str.substring(i, length);
+    currStr = currEndStr.concat(currPartialStr);
+    possibilities[currStr] = true;
+  }
+
+  for (var j = 2; j <= length; j++) {
+    mult = num * j;
+    if (!possibilities[mult]) {
+      console.log(mult, j)
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+function findNumber = function() {
+  var start = "00000000137";
+  var end = "56789";
+
+  for (var i = 0; i<)
+}
+
+
+
