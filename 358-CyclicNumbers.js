@@ -29,9 +29,8 @@
 /*
 Pseudocode:
 1.) Create a method that checks if it is cyclical or not
-    - Create an object of all digits of a number
-    - Make sure that every iteration (i.e. n * 4) has the same digits
-    - Make sure that every iteration does not have digits not in the original
+    - Create an object of all possibilities of a number
+    - Check every multiplication of the number and check if it is in the object
     - Return whether or not it is cyclical
 2.) Iterate through every possible number starting with "00000000137" and ending in "56789" and check if it is cyclical
 3.) Return the cyclical number
@@ -65,12 +64,23 @@ function isCyclical(num) {
 }
 
 
-function findNumber = function() {
+function findNumber() {
   var start = "00000000137";
   var end = "56789";
+  var index = 0;
+  var found = false;
+  var temp;
 
-  for (var i = 0; i<)
+  while (!found) {
+    temp = start + index.toString() + end;
+    if (isCyclical(Number(temp))) {
+      found = true;
+      return temp;
+    }
+    index++;
+  }
 }
 
+console.log(findNumber())
 
 
