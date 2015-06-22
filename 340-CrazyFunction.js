@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 340 CRAZY FUNCTION
 //NOT COMPLETED
+//WORKS FOR SMALL NUMBERS
 
 // For fixed integers a, b, c, define the crazy function F(n) as follows:
 // F(n) = n - c for all n > b 
