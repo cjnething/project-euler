@@ -73,7 +73,7 @@ function findNumber() {
 
   while (!found) {
     temp = start + index.toString() + end;
-    if (isCyclical(Number(temp))) {
+    if (isCyclical(temp)) {
       found = true;
       return temp;
     }
@@ -81,6 +81,28 @@ function findNumber() {
   }
 }
 
-console.log(findNumber())
+function iterateThroughDigits() {
+  var found = false;
+  var index = "";
+  var digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var count = 0;
+  var place = 1;
+
+  while(!found) {
+    if (index === "999" || count === 999) {
+      found = true;
+    }
+    for (var i = 0; i<digits.length; i++) {
+      index = digits[i];
+    }
+    count++;
+  }
+  return index;
+}
+
+
+function
+
+
 
 
