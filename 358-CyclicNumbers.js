@@ -88,20 +88,19 @@ function iterateThroughDigits() {
   var count = 0;
   var place = 1;
 
-  while(!found) {
-    if (index === "999" || count === 999) {
-      found = true;
+  function iterate(index, place) {
+    if (index.charAt(index.length - place) === "9") {
+
     }
-    for (var i = 0; i<digits.length; i++) {
-      index = digits[i];
-    }
-    count++;
+
   }
-  return index;
-}
 
 
-function
+ }
+
+
+
+
 
 
 
