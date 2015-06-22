@@ -12,13 +12,16 @@
 
 // Find the last 9 digits of S(21^7, 7^21, 12^7).
 
+var Big = require('big.js');
+
+
 
 function crazy(a, b, c) {
   var sum = 0;
   
   function crazyN(n) {
     if (n > b) {
-      return n - c;
+      return n-c;
     } else {
       return crazyN(a + crazyN(a + crazyN(a + crazyN(a + n))));
     }
@@ -31,6 +34,17 @@ function crazy(a, b, c) {
   return sum;
 }
 
+// var a = new Big(21).pow(7).toFixed();
+// var b = new Big(7).pow(21).toFixed();
+// var c = new Big(12).pow(7).toFixed();
 
-//console.log(crazy(50, 2000, 40))
+// var result = new Big(crazy(a, b, c));
+
+// console.log(a, b, c);
+
+// //console.log(result);
+
+// // 21^7, 7^21, 12^7
+
+console.log(crazy(50, 2000, 40))
 
