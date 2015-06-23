@@ -10,11 +10,43 @@
 // Find a30.
 
 
-var sumDigitpower = function(num) {
+function sumDigitPower(num) {
   var digits = num.toString().split("");
-  var sum = 0;
-  return digits.reduce(function(sum, val) {
+  var sum, powerEvaluated, exponent;
+  sum = digits.reduce(function(sum, val) {
     return sum + Number(val);}, 0);
+  if (sum === 1) {
+    return false;
+  }
+  exponent = 1;
+  powerEvaluated = sum;
+  while (powerEvaluated < num) {
+    exponent++;
+    powerEvaluated = Math.pow(sum, exponent);
+  }
+  if (powerEvaluated === num) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log(sumDigitpower(512))
+function findA30(limit) {
+  var count = 0;
+  var a = [];
+  a.push(0);
+  var index = 10;
+  
+  while (count < limit) {
+    if (sumDigitPower(index)) {
+      a.push(index);
+      count++;
+    }
+    index++;
+  }
+  console.log(a);
+  return index - 1;
+}
+
+
+console.log(findA30(15))
