@@ -52,4 +52,8 @@ function countNotBouncy(limit) {
 
 var googol = new Big(10).pow(100).toFixed();
 
-console.log(countNotBouncy(1000000))
+
+
+function increasing(limit) {
+  
+}
