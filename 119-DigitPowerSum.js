@@ -44,9 +44,9 @@ function findA30(limit) {
     }
     index++;
   }
-  console.log(a);
-  return index - 1;
+  return a;
 }
 
 
-console.log(findA30(15))
+
+console.log(findA30(10))
