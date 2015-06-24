@@ -36,18 +36,18 @@ function findRecurrenceRelation(limit) {
       current = alreadyFound[i/2];
     } else if (third % 1 === 0) {
       current = 2 * alreadyFound[2*third+1] - alreadyFound[third];
-    } else if (fourth % 1 === 0) {
-      current = 3 * alreadyFound[2*fourth+1] - (2*alreadyFound[fourth]);
     } else {
-      console.log('else', i);
+      current = 3 * alreadyFound[2*fourth+1] - (2*alreadyFound[fourth]);
     }
     alreadyFound[i] = current;
     sum += current;
   }
+  console.log(alreadyFound)
   return sum;
 }
 
-console.log(findRecurrenceRelation(10000000))
+console.log(findRecurrenceRelation(25))
 
 //console.log(Math.pow(3, 37))
+
 
