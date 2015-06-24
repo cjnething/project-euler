@@ -14,12 +14,14 @@
 var Big = require('big.js');
 
 function findDivisors(limit) {
-  var sum = 0;
+  var sum = new Big(0);
   var numTimesInLimit = 0;
+  var square;
 
   for (var i = 1; i<=limit; i++) {
     numTimesInLimit = Math.floor(limit/i);
-    sum += Math.pow(i, 2) * numTimesInLimit;
+    square = new Big(i).times(i).times(numTimesInLimit).toFixed();
+    sum = Big(sum).plus(square).toFixed();
   }
 
   return sum;
@@ -27,4 +29,4 @@ function findDivisors(limit) {
 
 //var result = new Big(findDivisors(Math.pow(10, 15)));
 
-console.log(findDivisors(10000000000))
+console.log(findDivisors(10000000))
