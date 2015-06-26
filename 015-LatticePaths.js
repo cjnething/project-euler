@@ -9,7 +9,7 @@
 // How many such routes are there through a 20×20 grid?
 
 
-
+//Very similar to Robot Paths, use memoization to cut down time complexity
 var findPaths = function(n) {
   var alreadyFound = [];
 
