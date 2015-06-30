@@ -13,6 +13,33 @@
 // Find S(10 000 000).
 
 
+
+
+//this function does not work
+
+function findPrimes(limit) {
+  var primes = [2];
+  //var isPrime = true;
+  var curr;
+
+  for (var i = 3; i<limit; i = i+2) {
+     curr = i;
+     for (var j = 2; j<=Math.sqrt(curr); j++) {
+       if (curr % j !== 0) {
+        primes.push(curr);
+
+        break;
+       }
+     }
+  }
+
+  return primes;
+}
+
+
+
+//this function works
+
 function findLargestInt(p, q, n) {
   var curr;
   var maxTotal = 0;
@@ -57,7 +84,7 @@ function findLargestInt(p, q, n) {
 
 
 
-console.log(findLargestInt(2,3,100));
+console.log(findPrimes(100))
 
 
 
