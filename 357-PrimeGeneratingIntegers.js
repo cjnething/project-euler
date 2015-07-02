@@ -7,56 +7,125 @@
 // Find the sum of all positive integers n not exceeding 100 000 000
 // such that for every divisor d of n, d+n/d is prime.
 
-var findPrimes = function() {
-  var primes = {'2': true};
-  for(var i = 3; i<5000; i+=2) {
-    console.log('i', i);
-    if(isPrime(i)) {
-      primes[i] = true;
+
+var findPrimes = function(limit) {
+  var numbers = {};
+
+  //the max number we need to find is limit + limit/limit = limit + 1
+  for (var i = 1; i<=limit+1; i++) {
+    //set up the numbers object by putting in all of the numbers and create an object of objects
+    //where each nested object will be all of the divisors
+    numbers[i] = {};
+
+    //create a "prime" key so that we can easily check if every number is prime or not
+    numbers[i]["prime"] = true;
+  }
+
+  //create the sieve of primes
+  for (var j = 1; j<=limit+1; j++) {
+    //j will be our divisor, i.e. is each number divisible by 37
+    for (var k = j; k<=limit+1; k = k+j) {
+      //k will be each number in our numbers object
+      //so if j = 5, we are checking if each number is divisible by 5
+      if (numbers[k]["prime"] === true && j !== 1 && j !== k) {
+        numbers[k]["prime"] = false;
+      }
+      numbers[k][j] = true;
     }
   }
-  return primes;
-}
 
-var isPrime = function(num) {
-  var isPrime = true;
-  for (var i = 2; i<=Math.sqrt(num); i++) {
-    if(num%i === 0) {
-      isPrime = false;
-      return isPrime;
+
+  var primeGenerating = true;
+  var sum;
+  var sumFinal = 0;
+
+  for (var key in numbers) {
+    key = Number(key);
+    for (var prop in numbers[key]) {
+      if (prop !== "prime") {
+        prop = Number(prop);
+        sum = prop + key/prop;
+        if (sum <= limit + 1 && !numbers[sum]["prime"]) {
+          primeGenerating = false;
+          break;
+        }
+      }
+
+    }
+    if (primeGenerating) {
+      sumFinal += key;
+    } else {
+      primeGenerating = true;
     }
   }
-  return isPrime;
+
+ return sumFinal;
 }
 
-var findDivisors = function(n) {
-  var divisors = {};
-  for (var i = 1; i<= Math.sqrt(n); i++) {
-    if (n%i === 0) {
-      divisors[i] = true;
-      divisors[n/i] = true;
-    }
-  }
-  return divisors;
-}
 
-var findAllInts = function() {
-  var total = 0;
-  var divisors;
-  var arePrime = true;
+console.log(findPrimes(100000));
+
+
+
+
+
+
+
+
+
+
+
+
+// var findPrimes = function() {
+//   var primes = {'2': true};
+//   for(var i = 3; i<5000; i+=2) {
+//     console.log('i', i);
+//     if(isPrime(i)) {
+//       primes[i] = true;
+//     }
+//   }
+//   return primes;
+// }
+
+// var isPrime = function(num) {
+//   var isPrime = true;
+//   for (var i = 2; i<=Math.sqrt(num); i++) {
+//     if(num%i === 0) {
+//       isPrime = false;
+//       return isPrime;
+//     }
+//   }
+//   return isPrime;
+// }
+
+// var findDivisors = function(n) {
+//   var divisors = {};
+//   for (var i = 1; i<= Math.sqrt(n); i++) {
+//     if (n%i === 0) {
+//       divisors[i] = true;
+//       divisors[n/i] = true;
+//     }
+//   }
+//   return divisors;
+// }
+
+// var findAllInts = function() {
+//   var total = 0;
+//   var divisors;
+//   var arePrime = true;
   
-  for (var i = 2; i<=1000000; i+=2) {
-     divisors = findDivisors(i);
-     for (var key in divisors) {
-         key = Number(key);
-         if (!isPrime(key + (key/i))) {
-             arePrime = false;
-         }
-     }
-     if(arePrime) {
-         total += i;
-     }
-     arePrime = true;
-  }
-  return total;
-}
+//   for (var i = 2; i<=1000000; i+=2) {
+//      divisors = findDivisors(i);
+//      for (var key in divisors) {
+//          key = Number(key);
+//          if (!isPrime(key + (key/i))) {
+//              arePrime = false;
+//          }
+//      }
+//      if(arePrime) {
+//          total += i;
+//      }
+//      arePrime = true;
+//   }
+//   return total;
+// }

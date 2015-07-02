@@ -17,3 +17,6 @@ var findSum = function(n) {
     }
     return sum;
 }
+
+
+findSum(10);
