@@ -8,7 +8,8 @@
 // such that for every divisor d of n, d+n/d is prime.
 
 
-var findPrimes = function(limit) {
+
+var findIntegers = function(limit) {
   var numbers = {};
 
   //the max number we need to find is limit + limit/limit = limit + 1
@@ -26,7 +27,7 @@ var findPrimes = function(limit) {
     //j will be our divisor, i.e. is each number divisible by 37
     for (var k = j; k<=limit+1; k = k+j) {
       //k will be each number in our numbers object
-      //so if j = 5, we are checking if each number is divisible by 5
+      //so if j = 5, we are going all the numbers k that are divisible by 5
       if (numbers[k]["prime"] === true && j !== 1 && j !== k) {
         numbers[k]["prime"] = false;
       }
@@ -63,69 +64,6 @@ var findPrimes = function(limit) {
 }
 
 
-console.log(findPrimes(100000));
+console.log(findIntegers(100000));
 
 
-
-
-
-
-
-
-
-
-
-
-// var findPrimes = function() {
-//   var primes = {'2': true};
-//   for(var i = 3; i<5000; i+=2) {
-//     console.log('i', i);
-//     if(isPrime(i)) {
-//       primes[i] = true;
-//     }
-//   }
-//   return primes;
-// }
-
-// var isPrime = function(num) {
-//   var isPrime = true;
-//   for (var i = 2; i<=Math.sqrt(num); i++) {
-//     if(num%i === 0) {
-//       isPrime = false;
-//       return isPrime;
-//     }
-//   }
-//   return isPrime;
-// }
-
-// var findDivisors = function(n) {
-//   var divisors = {};
-//   for (var i = 1; i<= Math.sqrt(n); i++) {
-//     if (n%i === 0) {
-//       divisors[i] = true;
-//       divisors[n/i] = true;
-//     }
-//   }
-//   return divisors;
-// }
-
-// var findAllInts = function() {
-//   var total = 0;
-//   var divisors;
-//   var arePrime = true;
-  
-//   for (var i = 2; i<=1000000; i+=2) {
-//      divisors = findDivisors(i);
-//      for (var key in divisors) {
-//          key = Number(key);
-//          if (!isPrime(key + (key/i))) {
-//              arePrime = false;
-//          }
-//      }
-//      if(arePrime) {
-//          total += i;
-//      }
-//      arePrime = true;
-//   }
-//   return total;
-// }

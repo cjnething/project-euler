@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 35 CIRCULAR PRIMES
-//NOT COMPLETED
+//COMPLETED 7/2/15
+//ANSWER: 55
 
 // The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime.
 
@@ -7,38 +8,68 @@
 
 // How many circular primes are there below one million?
 
+var findPrimes = function(limit) {
+    var primesArr = [];
+    var primesObj = {};
+    var numbers = {};
 
-var isPrime = function(n) {
-    var prime = true;
-    for (var i = 2; i<=Math.sqrt(n); i++) {
-        if (n % i === 0) {
-            prime = false;
-            return prime;
+    for (var i = 2; i<=limit; i++) {
+        numbers[i] = 0;
+    }
+
+    for (var j = 1; j<=limit; j++) {
+        for (var k = j; k<=limit; k=k+j) {
+            numbers[k] = numbers[k] + 1;
         }
     }
-    return prime;
-}
 
-var findPrimes = function() {
-    var primes = [2];
-    for (var i = 3; i<100; i+=2) {
-        if(isPrime(i)) {
-            primes.push(i);
+    for (var m = 2; m<=limit; m++) {
+        if (numbers[m] === 2) {
+            primesArr.push(m);
+            primesObj[m] = true;
         }
     }
-    return primes;
+
+    return [primesArr, primesObj];
 }
 
-var circular = function() {
-    var primes = findPrimes();
-    var circular = [];
+
+
+var findCircular = function(limit) {
+    var primesArr = findPrimes(limit)[0];
+    var primesObj = findPrimes(limit)[1];
+    var curr, temp;
+    var count = 0;
     var isCircular = true;
-    
-    for (var i = 0; i<primes.length; i++) {
-        var numStr = primes[i].toString();
-        if (isPrime(Number(numStr[1]+numStr[0]))) {
-            circular.push(primes[i]);
+
+    for (var i = 0; i<primesArr.length; i++) {
+      curr = primesArr[i].toString();
+      if (curr.length > 1) {
+        for (var j = 0; j<primesArr[i].toString().length; j++) {
+          curr = curr.slice(1, curr.length) + curr.slice(0, 1);
+          if (!primesObj[curr]) {
+            isCircular = false;
+            break;
+          }
         }
+        if (isCircular) {
+          count++;
+        } else {
+          isCircular = true;
+        }
+      } else {
+        count++;
+      }
     }
-    return circular;
+    return count;
 }
+
+
+console.log(findCircular(1000000));
+
+
+// Congratulations, the answer you gave to problem 35 is correct.
+
+// You are the 51930th person to have solved this problem.
+
+
