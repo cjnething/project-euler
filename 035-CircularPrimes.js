@@ -8,7 +8,10 @@
 
 // How many circular primes are there below one million?
 
+
+//create a sieve to find primes
 var findPrimes = function(limit) {
+    //want primesObj for constant lookup, want primesArr to iterate over
     var primesArr = [];
     var primesObj = {};
     var numbers = {};
