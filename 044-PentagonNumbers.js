@@ -25,7 +25,7 @@ var findPair = function() {
     var pents = {};
     var pentsByK = {};
 
-    for (var k = 1; k<2001; k++) {
+    for (var k = 1; k<1001; k++) {
         var temp = Big(pentagonal(k));
         pents[temp] = true;
         pentsByK[k] = temp;
@@ -35,17 +35,21 @@ var findPair = function() {
     // console.log(pentsByK[6]);
     // console.log(Big(pentsByK[5]).minus(pentsByK[6]).toFixed());
 
-    console.log('PENTS', pents);
+    //console.log('PENTS', pents);
     
-    for (var i = 1; i<2000; i++) {
-        for (var j = i+1; j<2001; j++) {
+    for (var i = 1; i<1500; i++) {
+        for (var j = i+1; j<1501; j++) {
             currSum = Big(pentsByK[j]).plus(pentsByK[i]).toFixed();
             currDiff = Big(pentsByK[j]).minus(pentsByK[i]).toFixed();
-            console.log('currSum', currSum, 'pent', pents[currSum]);
+            //console.log('currSum', currSum, 'currDiff', currDiff, 'pentSum', pents[currSum], pents[currDiff]);
             //console.log('i', i, 'j', j, 'diff', currDiff, 'sum', currSum, 'isDiff', pents[currDiff], 'isSum', pents[currSum], 'check', diff>currDiff)
-            if (pents[currDiff] && pents[currSum] && diff > currDiff.toFixed()) {
-                diff = currDiff;
+            if (pents[currDiff] && pents[currSum]) {
+                //console.log('i', i, 'j', j, 'sum', currSum, 'diff', currDiff, 'pentsSum', pents[currSum], 'pentsDiff', pents[currDiff]);
+                console.log('here');
             }
+            // if (pents[currDiff] && pents[currSum] && diff > currDiff.toFixed()) {
+            //     diff = currDiff;
+            // }
         }
     }
 

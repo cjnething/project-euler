@@ -1,5 +1,5 @@
 //PROJECT EULER: PROBLEM 18 MAXIMUM PATH SUM 1
-//COMPLETED 6/5/15 WITH DAVID ERNST
+//COMPLETED 6/5/15 WITH DAVID ERNST @DSERNST
 //ANSWER: 1074
 
 
@@ -95,3 +95,4 @@ console.log(findMaxPath(triangle15));
 // Congratulations, the answer you gave to problem 18 is correct.
 
 // You are the 85252nd person to have solved this problem.
+
