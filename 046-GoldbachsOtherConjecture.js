@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 46 GOLDBACH'S OTHER CONJECTURE
-//NOT COMPLETED
+//COMPLETED 7/9/15
+//ANSWER: 5777
 
 // It was proposed by Christian Goldbach that every odd composite number can be written as the sum of a prime and twice a square.
 
@@ -48,27 +49,39 @@ var findSmallestOddComposite = function(limit) {
    var primes = primeCompositesLimit[0];
    var composites = primeCompositesLimit[1];
    var canBeWritten;
-   var currTotal;
    var currComposite;
    var square = 1;
+   var squarePart = 0;
+   var primePart = 0;
 
    for (var i = 0; i<composites.length; i++) {
      currTotal = 0;
+     square = 1;
      canBeWritten = false;
      currComposite = composites[i];
-     while (currTotal < currComposite && !canBeWritten) {
-       currTotal = Math.sqrt(square, 2) * 2;
-       if (primes[currComposite - currTotal]) {
+     while (squarePart < currComposite && !canBeWritten) {
+       squarePart = Math.pow(square, 2) * 2;
+       primePart = currComposite - squarePart;
+       if (primes[primePart]) {
          canBeWritten = true;
        }
        square++;
      }
      if (!canBeWritten) {
-       return i;
+       return currComposite;
      }
    }
   return false;
 }
 
 
-console.log(findSmallestOddComposite(4000));
+console.log(findSmallestOddComposite(6000));
+
+
+// Congratulations, the answer you gave to problem 46 is correct.
+
+// You are the 36103rd person to have solved this problem.
+
+
+
+
