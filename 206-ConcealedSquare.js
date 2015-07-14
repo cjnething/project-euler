@@ -1,47 +1,47 @@
 //PROJECT EULER: PROBLEM 206 CONCEALED SQUARE
 //NOT COMPLETED
+//answer is 1389019170
+//paired with Wendy 7/13/15
 
 //Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 //where each “_” is a single digit.
 
-// function findInt() {
-//   var found = false;
-//   var i = 1010101030;
-//   var target = 0;
-
-//   while(!found || (i*i) < 1999999999999999999) {
-//     var squared = (i*i).toString();
-//     console.log('i', i, 'squared', squared);
-//     if(squared[0] === "1" || squared[2] === "2" || squared[4] === "3" || 
-//       squared[6] === "4" || squared[8] === "5" || squared[10] === "6" || 
-//       squared[12] === "7" || squared[14] === "8" || squared[16] === "9" ||
-//       squared[18] === "0") {
-//       found = true;
-//       target = i;
-//       return target;
-//     }
-//     i += 30;
-//   }
-// }
-
+var Big = require('big.js');
 
 function findInt() {
   var squared;
 
-  //Math.ceil(Math.sqrt(1020304050607080900)) = 1010101011
-  //Math.floor(Math.sqrt(1929394959697989990)) = 1389026623
+  //The smallest possible value is Math.ceil(Math.sqrt(1020304050607080900)) = 1010101010
+  //The largest possible value is Math.floor(Math.sqrt(1929394959697989990)) = 1389026624
+  //That will be our range for our for loops
 
-  for (var i = 1010101011; i<1110101011; i++) {
-    squared = Math.pow(i, 2).toString();
+  //The end has to be either 30 or 70 because 30 * 30 = 900 and 70 * 70 = 4900;
+  //No other ending will have a 9 and then some number and then a 0
+
+  //So first we will check all of the numbers that end in 30
+  for (var i = 1010101030; i<1389026630; i=i+100) {
+    squared = new Big(i).pow(2).toFixed();
+    //console.log(squared, squared[18])
     if(squared[18] === "0" && squared[16] === "9" && squared[14] === "8" && 
       squared[12] === "7" && squared[10] === "6" && squared[8] === "5" && 
-      squared[6] === "4" && squared[2] === "2" && squared[4] === "3" && squared[0] === "1") {
+      squared[6] === "4" && squared[4] === "3" && squared[2] === "2" && squared[0] === "1") {
       return i;
+    }
   }
-}
-}
 
+  //Then we will check all of the numbers that end in 70
+  for (var j = 1010101070; j<1389026670; j=j+100) {
+    squared = new Big(j).pow(2).toFixed();
+    //console.log(squared, squared[18])
+    if(squared[18] === "0" && squared[16] === "9" && squared[14] === "8" && 
+      squared[12] === "7" && squared[10] === "6" && squared[8] === "5" && 
+      squared[6] === "4" && squared[4] === "3" && squared[2] === "2" && squared[0] === "1") {
+      return j;
+    }
+  }
+ 
+ return false;
+}
 
 console.log(findInt());
-//console.log(Math.floor(Math.sqrt(1929394959697989990)));
-//45.9 seconds, 41.1
+

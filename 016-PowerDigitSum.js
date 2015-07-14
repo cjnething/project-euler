@@ -20,8 +20,9 @@ var findSum = function(num) {
 }
 
 
-
+console.log(twoToTheThousandthNum);
 console.log(findSum(twoToTheThousandthNum));
+
 
 
 
