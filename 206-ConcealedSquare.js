@@ -1,7 +1,7 @@
 //PROJECT EULER: PROBLEM 206 CONCEALED SQUARE
-//NOT COMPLETED
-//answer is 1389019170
-//paired with Wendy 7/13/15
+//COMPLETED 7/13/15 WITH WENDY LEUNG @WENDYLEUNG
+//ANSWER: 1389019170
+
 
 //Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 //where each “_” is a single digit.
@@ -44,4 +44,11 @@ function findInt() {
 }
 
 console.log(findInt());
+
+
+
+// Congratulations, the answer you gave to problem 206 is correct.
+
+// You are the 14179th person to have solved this problem.
+
 
