@@ -9,6 +9,7 @@
 
 // Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal and D = |Pk − Pj| is minimised; what is the value of D?
 
+
 var Big = require('big.js');
 
 
@@ -37,8 +38,8 @@ var findPair = function() {
 
     //console.log('PENTS', pents);
     
-    for (var i = 1; i<1500; i++) {
-        for (var j = i+1; j<1501; j++) {
+    for (var i = 1; i<200; i++) {
+        for (var j = i+1; j<201; j++) {
             currSum = Big(pentsByK[j]).plus(pentsByK[i]).toFixed();
             currDiff = Big(pentsByK[j]).minus(pentsByK[i]).toFixed();
             //console.log('currSum', currSum, 'currDiff', currDiff, 'pentSum', pents[currSum], pents[currDiff]);
