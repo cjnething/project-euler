@@ -11,7 +11,7 @@
 
 
 
-
+//create a sieve to find all primes
 function findPrimes(limit) {
   var allNums = {};
   var primesArr = [];
@@ -19,10 +19,12 @@ function findPrimes(limit) {
 
   allNums[2] = true;
 
+  //put all numbers into the allNumbers object so we can start checking
   for (var i = 3; i<=limit; i+=2) {
     allNums[i] = true;
   }
 
+  //now use a sieve to find out if it is prime or not
   for (var j = 3; j<=limit; j+=2) {
     for (var k = j+j; k<=limit; k+=j) {
       if (allNums[k]) {
@@ -30,7 +32,8 @@ function findPrimes(limit) {
       }
     }
   }
-
+  
+  //now put all the primes into the primesArr and primesObj
   for (var key in allNums) {
     if (allNums[key] && (key.toString().length === 4)) {
       primesArr.push(key)
@@ -38,7 +41,7 @@ function findPrimes(limit) {
     }
   }
 
-  
+  //we want to return both so that we can iterate through them and have quick lookup
   return [primesArr, primesObj];
 }
 
@@ -102,11 +105,21 @@ function findSequence(limit) {
 
   for (var i = 0; i<primeArr.length; i++) {
     for (var j = i+1; j<primeArr.length; j++) {
+
+      //find the arithmetic sequence
       difference = Number(primeArr[j]) - Number(primeArr[i]);
       newNum = Number(primeArr[j]) + difference;
+
+      //check if the next number in the arithmetic sequence is prime
       if (primeObj[newNum]) {
+
+        //now check if all the digits in all three numbers in the sequence are the same
         if (checkSameDigits(primeArr[i], primeArr[j], newNum)) {
+
+          //now ignore 1487 because that was the example
           if (primeArr[i] !== '1487') {
+
+            //voila, we found the answer!
             return primeArr[i].concat(primeArr[j]).concat(newNum);
           }
         }
