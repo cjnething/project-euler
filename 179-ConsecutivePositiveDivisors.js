@@ -8,7 +8,7 @@
 
 
 //Before, I used a normal function to find all the divisors
-//Using a sieve increases the time considerably
+//Using a sieve decreases the time considerably
 //Previous function took approx. 100 seconds, new function (sieve) takes 1.6 seconds
 //This has a much higher space complexity (the giant divisors array sieve) but a lower time complexity
 var findConsecDivisors = function(limit) {

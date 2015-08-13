@@ -19,4 +19,4 @@ var findSum = function(n) {
 }
 
 
-findSum(10);
+console.log(findSum(10));
