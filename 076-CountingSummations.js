@@ -17,7 +17,7 @@
 
 var findSums = function(num) {
     // iterate over n-1 to 0
-        // check if it beng added to the string makes num
+        // check if it being added to the string makes num
             // push to result arr
         // else if sum is lower than num
             // recurse down a layer
@@ -44,7 +44,7 @@ var findSums = function(num) {
     return numWays;
 }
 
-
+console.log(findSums(100));
 
 // Congratulations, the answer you gave to problem 76 is correct.
 
