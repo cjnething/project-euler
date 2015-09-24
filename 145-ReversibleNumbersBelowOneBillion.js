@@ -8,6 +8,13 @@
 // How many reversible numbers are there below one-billion (10^9)?
 
 
+
+
+
+
+
+
+
 // var isReversible = function(num) {
 //   var isOdd = true;
 //   var oddDigits = {1: true, 3: true, 5: true, 7: true, 9: true};
@@ -51,6 +58,9 @@
 // console.log(findCount(10000000))
 
 
+
+/*
+****************************** MOST RECENT ATTEMPT ********************
 var reverse = function(num) {
   var str = num.toString();
   var newStr = "";
@@ -108,7 +118,8 @@ var reversibleNumbers = function(limit) {
 
 console.log(reversibleNumbers(1000))
 
-
+******************************* END MOST RECENT ATTEMPT ****************
+*/
 
 // var reversibleNumbers = function(limit) {
 //   var reversed, sum, digits, iStr, reversedStr;
