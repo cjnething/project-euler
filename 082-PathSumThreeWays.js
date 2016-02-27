@@ -104,43 +104,39 @@ var realMatrix =
 var findPathSum = function(matrix) {
   for (var col = matrix.length-2; col>=0; col--) {
     for (var row = 0; row<matrix.length; row++) {
-      if (col === matrix.length - 2) {
-        matrix[row][col] += matrix[row][col+1];
-      } else {
-
-        if (row === 0) {
-          if (matrix[row][col+1] < (matrix[row+1][col] + matrix[row+1][col+1])) {
-            matrix[row][col] += matrix[row][col+1];
-          } else {
-            matrix[row][col] += (matrix[row+1][col] + matrix[row+1][col+1]);
-          }
-        } else if (row === matrix.length - 1) {
-          //check the same and above
-          if (matrix[row][col+1] < (matrix[row-1][col] + matrix[row-1][col+1])) {
-            matrix[row][col] += matrix[row][col+1];
-          } else {
-            matrix[row][col] += (matrix[row-1][col] + matrix[row-1][col+1]);
-          }
+      if (row === 0) {
+        //check the same row and the row below
+        if (matrix[row][col+1] < (matrix[row+1][col] + matrix[row+1][col+1])) {
+          matrix[row][col] += matrix[row][col+1];
         } else {
-          //check the same, above and below
-          //if the same row is less than the one below
-          if (matrix[row][col+1] < (matrix[row+1][col] + matrix[row+1][col+1])) {
-            //and the same row is less than the one above
-            if (matrix[row][col+1] < matrix[row-1][col]) {
-              matrix[row][col] += matrix[row][col+1];
-            //and it's smaller than the one above
-            } else {
-              matrix[row][col] += matrix[row-1][col];
-            }
-            //if the one below is smaller than the current row
+          matrix[row][col] += (matrix[row+1][col] + matrix[row+1][col+1]);
+        }
+      } else if (row === matrix.length - 1) {
+        //check the same row and the row above
+        if (matrix[row][col+1] < matrix[row-1][col]) {
+          matrix[row][col] += matrix[row][col+1];
+        } else {
+          matrix[row][col] += matrix[row-1][col];
+        }
+      } else {
+        //check the same, above and below
+        //if the same row is less than the one below
+        if (matrix[row][col+1] < (matrix[row+1][col] + matrix[row+1][col+1])) {
+          //and the same row is less than the one above
+          if (matrix[row][col+1] < matrix[row-1][col]) {
+            matrix[row][col] += matrix[row][col+1];
+          //and it's smaller than the one above
           } else {
-              //and it's smaller than the one above
-              if ((matrix[row+1][col] + matrix[row+1][col+1]) < matrix[row-1][col]) {
-                matrix[row][col] += (matrix[row+1][col] + matrix[row+1][col+1]);
-              //and it's bigger than the one above
-              } else {
-                matrix[row][col] += matrix[row-1][col];
-              }
+            matrix[row][col] += matrix[row-1][col];
+          }
+          //if the one below is smaller than the current row
+        } else {
+          //and it's smaller than the one above
+          if ((matrix[row+1][col] + matrix[row+1][col+1]) < matrix[row-1][col]) {
+            matrix[row][col] += (matrix[row+1][col] + matrix[row+1][col+1]);
+          //and it's bigger than the one above
+          } else {
+            matrix[row][col] += matrix[row-1][col];
           }
         }
       }
@@ -154,11 +150,11 @@ var findPathSum = function(matrix) {
       lowest = matrix[i][0];
     }
   }
+  console.log(matrix);
 
-  console.log(matrix)
   return lowest;
 }
 
-//console.log(findPathSum(realMatrix));
-console.log(findPathSum(matrixExample))
+console.log(findPathSum(realMatrix));
+//console.log(findPathSum(matrixExample))
 

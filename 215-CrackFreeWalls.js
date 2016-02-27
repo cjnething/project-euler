@@ -69,4 +69,4 @@ function findPossibilities(width, height) {
   return totalPossibilities;
 }
 
-console.log(findPossibilities(9, 3));
+console.log(findPossibilities(9, 1));

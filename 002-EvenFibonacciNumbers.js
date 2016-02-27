@@ -36,5 +36,5 @@ var fibSum = function(limit) {
 }
 
 
-
 console.log(fibSum(4000000));
+

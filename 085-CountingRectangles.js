@@ -7,14 +7,20 @@
 // Although there exists no rectangular grid that contains exactly two million rectangles, find the area of the grid with the nearest solution.
 
 
+/*
+at (0,0) you can do a 1x1, 2x1, 3x1, 1x2, 2x2, 3x2
+*/
+
+//let's say that the top corner is at (0, 0) and the last is at (height-1, width-1) and we can only make our rectangles upward
+
 var countRectangles = function(height, width) {
-   var count = 0;
-   var area = height * width;
+  var count = 0;
 
-   for (var i = 1; i<=height; i++) {
-     for (var j = 1; j<=width; j++) {
-       count += 
-     }
-   }
+  for (var x = 0; x < height; x++) {
+    for (var y = 0; y < width; y++) {
+      
+    }
+  }
 
+  return count;
 }
