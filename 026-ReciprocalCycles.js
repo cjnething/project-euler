@@ -17,6 +17,7 @@
 // Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
 
+//Attempt 1:
 var Big = require('big.js');
 
 
@@ -44,5 +45,31 @@ var findCycle = function(limit) {
 }
 
 console.log(findCycle(1000));
+
+
+
+//Attempt 2:
+var longDivision = function(numerator, divisor, countDecimalPlacesMoved, currentAnswer) {
+    countDecimalPlacesMoved = countDecimalPlacesMoved || 0;
+    currentAnswer = currentAnswer || "";
+    if (numerator % divisor === 0) {
+        currentAnswer = Number(currentAnswer + (numerator/divisor)) * Math.pow(10, (0 - countDecimalPlacesMoved));
+        return currentAnswer;
+    } else if(currentAnswer.toString().length > 10) {
+        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - countDecimalPlacesMoved));
+        return currentAnswer;
+    } else if (numerator > divisor) {
+        var currentAddition = Math.floor(numerator/divisor);
+        currentAnswer += currentAddition;
+        numerator -= (currentAddition * divisor);
+        return longDivision(numerator, divisor, countDecimalPlacesMoved, currentAnswer);
+    } else {
+        countDecimalPlacesMoved++;
+        numerator *= 10;
+        return longDivision(numerator, divisor, countDecimalPlacesMoved, currentAnswer);
+    }
+    
+    return currentAnswer;
+}
 
 
