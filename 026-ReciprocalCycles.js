@@ -1,5 +1,6 @@
 //PROJECT EULER: PROBLEM 26 RECIPROCAL CYCLES
-//NOT COMPLETED
+//COMPLETED 3/5/16
+//ANSWER: 983
 
 // A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
 
@@ -17,64 +18,74 @@
 // Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
 
-//Attempt 1:
-var Big = require('big.js');
 
+var getLengthRecurringCycle = function(numerator, divisor, currentAnswer, previousNumerators) {
+    //approach: work through the long division problem
+    //if the same numerator comes across twice, then we know we have found a recurring cycle
 
-var findCycle = function(limit) {
-  var longestIndex, current, currentLength;
-  var length = 0;
-
-  for (var i = 2; i<limit; i++) {
-    current = Big(1).div(i).toPrecision();
-    
-    for (var j = 3; j<current.length; j++) {
-      if (current.charAt(j) === current.charAt(2)) {
-         currentLength = j - 2;
-         if (currentLength > length) {
-          length = currentLength;
-          longestIndex = i;
-         }
-         break;
-      }
-    }
-  }
-  
-  console.log('LENGTH',longestIndex, length);
-  return length;
-}
-
-console.log(findCycle(1000));
-
-
-
-//Attempt 2:
-var longDivision = function(numerator, divisor, currentAnswer) {
-    console.log('------------------------------------------------------------');
-    console.log(numerator, divisor, currentAnswer);
     var length;
     currentAnswer = currentAnswer || "";
+    previousNumerators = previousNumerators || [];
+    
+    //check if we are in a repeating pattern
+    if (previousNumerators.indexOf(numerator) === -1) {
+        previousNumerators.push(numerator);
+    } else {
+        return previousNumerators.length - previousNumerators.indexOf(numerator);
+    }
+    
+
+    //else just continue with the long division
+
+    //numerator is divisible by the divisor, meaning we have found the end of the decimal
     if (numerator % divisor === 0) {
-        currentAnswer += (numerator/divisor);
-        length = currentAnswer.toString().length;
-        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - (length - 1)));
-        return currentAnswer;
-    } else if (currentAnswer.toString().length >= 20) {
-        length = currentAnswer.toString().length;
-        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - (length - 1)));
-        return currentAnswer;
+        //now we know it's not repeating, so we just return 0
+        return 0;
+
+    //numerator is greater than the divisor, so we can continue with dividing
     } else if (numerator > divisor) {
         var currentAddition = Math.floor(numerator/divisor);
         currentAnswer += currentAddition;
         numerator -= (currentAddition * divisor);
-        return longDivision(numerator, divisor, currentAnswer);
+        //"bring down" the next value, which will always be 0 in this case
+        numerator += "0";
+        return getLengthRecurringCycle(numerator, divisor, currentAnswer, previousNumerators);
+
+    //numerator is less than the divisor, i.e. 1/11, so we need to make a placeholder and move the decimal over
     } else {
         currentAnswer += "0";
         numerator *= 10;
-        return longDivision(numerator, divisor, currentAnswer);
+        return getLengthRecurringCycle(numerator, divisor, currentAnswer, previousNumerators);
     }
     
     return currentAnswer;
 }
+
+
+var findLargestRecurringCycle = function(limit) {
+    var largestCycle = 0;
+    var largestDivisor, currentCycle;
+    
+    for (var i = 2; i < limit; i++) {
+      currentCycle = getLengthRecurringCycle(1, i)
+      if (currentCycle > largestCycle) {
+        largestCycle = currentCycle;
+        largestDivisor = i;
+      }
+    }
+    
+    return "Largest Cycle: " + largestCycle + " and Largest Divisor: " + largestDivisor;
+}
+
+
+console.log(findLargestRecurringCycle(1000));
+
+
+
+
+// Congratulations, the answer you gave to problem 26 is correct.
+
+// You are the 54231st person to have solved this problem.
+
 
 
