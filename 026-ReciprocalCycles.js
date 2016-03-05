@@ -49,24 +49,29 @@ console.log(findCycle(1000));
 
 
 //Attempt 2:
-var longDivision = function(numerator, divisor, countDecimalPlacesMoved, currentAnswer) {
-    countDecimalPlacesMoved = countDecimalPlacesMoved || 0;
+var longDivision = function(numerator, divisor, currentAnswer) {
+    console.log('------------------------------------------------------------');
+    console.log(numerator, divisor, currentAnswer);
+    var length;
     currentAnswer = currentAnswer || "";
     if (numerator % divisor === 0) {
-        currentAnswer = Number(currentAnswer + (numerator/divisor)) * Math.pow(10, (0 - countDecimalPlacesMoved));
+        currentAnswer += (numerator/divisor);
+        length = currentAnswer.toString().length;
+        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - (length - 1)));
         return currentAnswer;
-    } else if(currentAnswer.toString().length > 10) {
-        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - countDecimalPlacesMoved));
+    } else if (currentAnswer.toString().length >= 20) {
+        length = currentAnswer.toString().length;
+        currentAnswer = Number(currentAnswer) * Math.pow(10, (0 - (length - 1)));
         return currentAnswer;
     } else if (numerator > divisor) {
         var currentAddition = Math.floor(numerator/divisor);
         currentAnswer += currentAddition;
         numerator -= (currentAddition * divisor);
-        return longDivision(numerator, divisor, countDecimalPlacesMoved, currentAnswer);
+        return longDivision(numerator, divisor, currentAnswer);
     } else {
-        countDecimalPlacesMoved++;
+        currentAnswer += "0";
         numerator *= 10;
-        return longDivision(numerator, divisor, countDecimalPlacesMoved, currentAnswer);
+        return longDivision(numerator, divisor, currentAnswer);
     }
     
     return currentAnswer;
