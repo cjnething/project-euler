@@ -17,6 +17,7 @@ Find the smallest denominator d, having a resilience R(d) < 15499/94744 .
 
 //plan: going to make a sieve of all divisors
 
+/*
 var sieve = function(limit) {
   var allNums = [];
 
@@ -35,10 +36,11 @@ var sieve = function(limit) {
 
 
 var getResilienceCount = function(limit, allDenoms) {
+  var divisorsSieve;
   if (allDenoms) {
-    var divisorsSieve = allDenoms.slice(0, (limit+1));
+    divisorsSieve = allDenoms.slice(0, (limit+1));
   } else {
-    var divisorsSieve = sieve(limit);
+    divisorsSieve = sieve(limit);
   }
   var limitDivisors = divisorsSieve[divisorsSieve.length-1];
   
@@ -61,7 +63,7 @@ var getLowestDenominator = function(max, sieveLimit) {
   var i = 2;
   var currResilience;
 
-  for (var i = 2; i < sieveLimit; i++) {
+  for (var i = 510510; i < sieveLimit; i=i+510510) {
     currResilience = getResilienceCount(i, allDenoms);
     if (currResilience < max) {
       return i;
@@ -70,10 +72,103 @@ var getLowestDenominator = function(max, sieveLimit) {
 
   return "NONE";
 }
+*/
 
-//console.log(getResilienceCount(7));
-//console.log(getLowestDenominator(15499/94744));
-console.log(getLowestDenominator(15499/94744, 10000));
+
+var primeFactorizationSieve = function(limit) {
+  var allNums = [];
+  var power;
+
+  for (var i = 0; i <= limit; i++) {
+    allNums.push([i, {}]);
+  }
+
+  for (var j = 2; j <= limit; j++) {
+    //j is making sure we get prime factors for all numbers
+    //k is getting the prime factors
+    var k = 2;
+    while (k <= j) {
+     if (allNums[j][0] % k === 0) {
+        if (allNums[j][1][k]) {
+          allNums[j][1][k]++;
+        } else {
+          allNums[j][1][k] = 1;
+        }
+        allNums[j][0] = allNums[j][0]/k;
+      } else {
+        k++;
+      }
+    }
+  }
+
+  var divisors = [];
+
+  for (var m = 0; m < allNums.length; m++) {
+    divisors.push(allNums[m][1]);
+  }
+
+  return divisors;
+}
+
+
+
+var checkResilience = function(limit) {
+  var divisors = primeFactorizationSieve(15000);
+  var currentResult = 1;
+  var currentResultPrimes = {};
+  var index = 2;
+  var difference;
+
+  while (getResilience(currentResult, currentResultPrimes) > limit) {
+    for (var key in divisors[index]) {
+      if (currentResultPrimes[key]) {
+        difference = divisors[index][key] - currentResultPrimes[key];
+        if (difference > 0) {
+          currentResultPrimes[key] = divisors[index][key];
+          currentResult *= Math.pow(key, difference);
+        }
+      } else {
+        currentResultPrimes[key] = 1;
+        currentResult *= key;
+      }
+    }
+    index++;
+  }
+  
+  return currentResult;
+}
+
+
+var getResilience = function(num, primeDivisors) {
+  var count = 1;
+  var isResilient;
+  
+  for (var i = 2; i < num; i++) {
+    isResilient = true;
+    for (var key in primeDivisors) {
+      if (i % Number(key) === 0) {
+        isResilient = false;
+        break;
+      }
+    }
+    if (isResilient) {
+      count++;
+    }
+  }
+
+  return count/(num-1);
+}
+
+
+
+console.log(checkResilience(15499/94744));
+
+
+
+
+
+
+
 
 
 
