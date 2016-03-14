@@ -1,6 +1,6 @@
 //PROJECT EULER: PROBLEM 40 CHAMPERNOWNE'S CONSTANT
-//NOT COMPLETED
-
+//COMPLETED 3/13/16
+//ANSWER: 210
 
 
 // An irrational decimal fraction is created by concatenating the positive integers:
@@ -14,19 +14,29 @@
 // d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 
 
-function findDigitAt(n) {
-  // var tenPower = 0;
-  // var curr = 1;
-  // if (n < 10) {
-  //   return n;
-  // }
-  // else {
-  //   while (n > (Math.pow(10, tenPower) * 9)) {
-  //     tenPower++;
-  //   }
-  //   return findDigitAt(n - Math.pow(10, tenPower));
-  // }
+function findDigitAt(limit) {
+  var currentTotal = "0.";
+  var i = 1;
+
+  //add 2 for the "0." part
+  while (currentTotal.length < (limit + 2)) {
+    currentTotal += i.toString();
+    i++;
+  }
+
+  var finalTotal = 1;
+  for (var j = 0; j <= 6; j++) {
+    //add 1 because if you are looking at 0.1 that is the first decimal part but it is charAt(2)
+    finalTotal *= (currentTotal.charAt(Math.pow(10, j) + 1));
+  }
+
+  return finalTotal;
 }
 
+console.log(findDigitAt(1000000));
 
-console.log(findDigitAt(12));
+
+// Congratulations, the answer you gave to problem 40 is correct.
+
+// You are the 53145th person to have solved this problem.
+
